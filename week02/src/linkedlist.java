@@ -32,6 +32,7 @@ public class linkedlist {
 
 
     }
+
     public void reverse() {
         Node n = head;
 
@@ -51,6 +52,31 @@ public class linkedlist {
 
         }
         head = prev;
+
+    }
+    public void palindromeCheck(linkedlist ll){
+        Node n = head;
+        String str = "";
+        while(n!=null){
+            str = str+n.data;
+            n = n.next;
+        }
+
+        ll.reverse();
+        String str2 ="";
+        Node n2 = head;
+        while(n2!=null){
+            str2 = str2 + n2.data;
+            n2 = n2.next;
+
+        }
+        if(str.equals(str2)){
+            System.out.println("palindrome");
+        }
+        else{
+            System.out.println("Not palindrome");
+        }
+
 
     }
 
@@ -107,30 +133,33 @@ public class linkedlist {
 
 
 
-        ll.appendatTail(1);
+        ll.appendatTail(3);
 
         ll.appendatTail(2);
         ll.appendatTail(3);
+        ll.appendatHead(1);
+        ll.appendatTail(2);
 
         ll.printList();
-        ll.appendatHead(4);
-
-        ll.printList();
-        ll.appendatTail(5);
-        ll.printList();
+        ll.palindromeCheck(ll);
+//        ll.appendatHead(4);
+//
+//        ll.printList();
+//        ll.appendatTail(5);
+//        ll.printList();
        // ll.deleteNode(4);
         //ll.deleteNode(1);
-        ll.printList();
-        ll.reverse();
-        ll.printList();
-        ll.appendatHead(4);
-        ll.printList();
-        ll.reverse();
-        ll.printList();
-        ll.appendatTail(7);
-        ll.printList();
-        ll.reverse();
-        ll.printList();
+//        ll.printList();
+//        ll.reverse();
+//        ll.printList();
+//        ll.appendatHead(4);
+//        ll.printList();
+//        ll.reverse();
+//        ll.printList();
+//        ll.appendatTail(7);
+//        ll.printList();
+//        ll.reverse();
+//        ll.printList();
 
        // System.out.print(ll.getSize());
 
