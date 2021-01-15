@@ -53,6 +53,24 @@ public class linkedlist {
         }
         System.out.println();
     }
+    public void deleteNode(int data){
+        if(head==null){
+            return;
+        }
+        if(head.data==data){
+            head = head.next;
+            return;
+        }
+        Node current = head;
+        while(current.next!=null){
+            if(current.next.data ==data){
+                current.next = current.next.next;
+            }
+            current =current.next;
+        }
+
+    }
+
 
     public static void main(String[] args){
 
@@ -74,8 +92,11 @@ public class linkedlist {
         ll.printList();
         ll.appendatTail(5);
         ll.printList();
+        ll.deleteNode(4);
+        ll.deleteNode(1);
+        ll.printList();
 
-        System.out.print(ll.getSize());
+       // System.out.print(ll.getSize());
 
 
     }
