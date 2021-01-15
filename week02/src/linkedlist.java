@@ -1,0 +1,96 @@
+public class linkedlist {
+    Node head;
+    public void appendatTail(int data){
+        if (head == null) {
+            head = new Node(data);
+            return;
+        }
+       // Node Newnode =new Node(data);
+        Node n = head;
+        while(n.next!=null){
+            n = n.next;
+        }
+        Node newnode = new Node(data);
+        n.next = newnode;
+
+
+
+    }
+    public void appendatHead(int data){
+        Node newHead = new Node(data);
+
+
+            newHead.next = head;
+            head = newHead;
+
+
+
+
+
+
+
+    }
+
+    public int getSize(){
+        Node n = head;
+        int counter = 0;
+        if(n==null){
+            return 0;
+
+        }
+        while(n!=null){
+            counter++;
+            n = n.next;
+        }
+        return counter;
+
+    }
+    public void printList(){
+        Node n = head;
+        while(n!=null){
+            System.out.print(n.data + " ");
+            n = n.next;
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args){
+
+        linkedlist ll = new linkedlist();
+
+
+
+
+
+
+        ll.appendatTail(1);
+
+        ll.appendatTail(2);
+        ll.appendatTail(3);
+
+        ll.printList();
+        ll.appendatHead(4);
+
+        ll.printList();
+        ll.appendatTail(5);
+        ll.printList();
+
+        System.out.print(ll.getSize());
+
+
+    }
+
+
+
+}
+class Node{
+
+    Node next;
+    int data;
+    public Node(int data){
+        this.data = data;
+
+    }
+
+
+}
