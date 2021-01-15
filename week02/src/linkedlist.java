@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class linkedlist {
     Node head;
     public void appendatTail(int data){
@@ -30,6 +32,30 @@ public class linkedlist {
 
 
     }
+    public void reverse() {
+        Node n = head;
+
+        if (head == null) {
+            return;
+        }
+        Node current = head;
+        Node prev = null;
+        Node nex;
+        while (current != null) {
+            nex = current.next;
+            current.next = prev;
+            prev = current;
+            current = nex;
+
+
+
+        }
+        head = prev;
+
+    }
+
+
+
 
     public int getSize(){
         Node n = head;
@@ -92,8 +118,18 @@ public class linkedlist {
         ll.printList();
         ll.appendatTail(5);
         ll.printList();
-        ll.deleteNode(4);
-        ll.deleteNode(1);
+       // ll.deleteNode(4);
+        //ll.deleteNode(1);
+        ll.printList();
+        ll.reverse();
+        ll.printList();
+        ll.appendatHead(4);
+        ll.printList();
+        ll.reverse();
+        ll.printList();
+        ll.appendatTail(7);
+        ll.printList();
+        ll.reverse();
         ll.printList();
 
        // System.out.print(ll.getSize());
