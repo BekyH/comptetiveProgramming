@@ -5,8 +5,8 @@ import java.util.Queue;
 
 public class recursiveSum {
     public static void main(String[] args){
-       int x =superDigit("9875",4);
-       System.out.println(x);
+        int x =superDigit("9875",4);
+        System.out.println(x);
 
 
 
@@ -15,27 +15,31 @@ public class recursiveSum {
 
     static int superDigit(String n, int k) {
 
-            if(n.length()==1 && k==1){
-                return Integer.parseInt(n);
-            }
-            long num = 0;
-            for(int i = 0;i<n.length();i++){
-                num = num + Integer.parseInt(n.charAt(i) +"");
-
-            }
-            num = num *k;
-            return superDigit(String.valueOf(num),1);
+        if(n.length()==1 && k==1){
+            return Integer.parseInt(n);
+        }
+        long num = 0;
+        for(int i = 0;i<n.length();i++){
+            num = num + Integer.parseInt(n.charAt(i) +"");
 
         }
+        num = num *k;
 
 
 
-
-
-
+        return superDigit(String.valueOf(num),1);
 
     }
-//    static String recursiveSum(String s){
+
+
+
+
+
+
+
+
+}
+//    static String digitSum(String s){
 //
 //        if(s.length()==1){
 //            return s;
@@ -52,8 +56,6 @@ public class recursiveSum {
 //
 //
 //        }
-//        String str = String.valueOf(sum);
-//        return recursiveSum(str);
 //
 //
 //    }
