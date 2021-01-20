@@ -1,61 +1,63 @@
 import com.sun.xml.internal.ws.util.StringUtils;
 
 import java.math.BigInteger;
+import java.util.Queue;
 
 public class recursiveSum {
     public static void main(String[] args){
-       superDigit("9875",4);
-       String s = "23";
-       StringBuilder ss = new StringBuilder(s);
-
-
-    }
-
-
-    static void superDigit(String n, int k) {
-        StringBuilder sb = new StringBuilder(k * n.length());
-        long num = 0;
-        for(int i = 0;i<n.length();i++){
-            num = num + Integer.parseInt(n.charAt(i) +"");
-
-        }
-        num = num *k;
-
-
-
-
-            String st = recursiveSum(String.valueOf(num));
-            System.out.print(st);
-
-
-
-
+       int x =superDigit("9875",4);
+       System.out.println(x);
 
 
 
     }
-    static String recursiveSum(String s){
-        if(s.length()==1){
-            return s;
+
+
+    static int superDigit(String n, int k) {
+
+            if(n.length()==1 && k==1){
+                return Integer.parseInt(n);
+            }
+            long num = 0;
+            for(int i = 0;i<n.length();i++){
+                num = num + Integer.parseInt(n.charAt(i) +"");
+
+            }
+            num = num *k;
+            return superDigit(String.valueOf(num),1);
+
         }
 
-        long sum = 0;
-        long x = Long.parseLong(s);
-
-        while(x!=0){
-
-            long y = x %10;
-            sum = sum + y;
-            x = x/10;
 
 
-        }
-        String str = String.valueOf(sum);
-        return recursiveSum(str);
+
+
 
 
     }
+//    static String recursiveSum(String s){
+//
+//        if(s.length()==1){
+//            return s;
+//        }
+//
+//        long sum = 0;
+//        long x = Long.parseLong(s);
+//
+//        while(x!=0){
+//
+//            long y = x %10;
+//            sum = sum + y;
+//            x = x/10;
+//
+//
+//        }
+//        String str = String.valueOf(sum);
+//        return recursiveSum(str);
+//
+//
+//    }
 
 
 
-}
+
