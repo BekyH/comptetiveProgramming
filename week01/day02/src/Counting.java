@@ -6,15 +6,13 @@ public class Counting {
         int n = arr.length;
 
         ArrayList<Integer> arrayList = new ArrayList<>();
-        ArrayList<Integer> negativeNums = new ArrayList<>();
+
         int max = 0;
         for(int ii=0;ii<n;ii++){
             if(arr[ii]>max){
                 max=arr[ii];
             }
-            if(arr[ii]<0){
-                negativeNums.add(arr[ii]);
-            }
+
         }
         int x = max + 1;
         System.out.println(max);
