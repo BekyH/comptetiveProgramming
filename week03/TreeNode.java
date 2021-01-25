@@ -14,6 +14,7 @@
   }
 
 class solution {
+    int sum = 0;
     public TreeNode insertIntoBST(TreeNode root, int val) {
         if(root==null){
             root = new TreeNode(val);
@@ -44,6 +45,18 @@ class solution {
         return root;
 
 
+
+    }
+    public int rangeSumBST(TreeNode root, int low, int high) {
+        if(root!=null){
+            if(root.val<=high && root.val>=low){
+                sum = sum + root.val;
+
+            }
+            rangeSumBST(root.left,low,high);
+            rangeSumBST(root.right,low,high);
+        }
+        return sum;
 
     }
 
