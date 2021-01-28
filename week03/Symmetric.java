@@ -1,5 +1,5 @@
 public class Symmetric {
-    boolean isSymetry = false;
+
 
     public boolean isSymmetric(TreeNode root) {
         return isSym(root, root);
