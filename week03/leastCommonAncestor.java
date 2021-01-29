@@ -1,5 +1,5 @@
 public class leastCommonAncestor {
-    TreeNode lca = null;
+    TreeNode lca;
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         int p_val = p.val;
         int q_val = q.val;
