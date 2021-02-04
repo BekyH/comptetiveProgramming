@@ -1,58 +1,44 @@
+import sun.reflect.generics.tree.Tree;
+import sun.rmi.server.InactiveGroupException;
+
+import javax.xml.crypto.dom.DOMCryptoContext;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class isValid {
+
     public boolean isValidBST(TreeNode root) {
+           double upperBound = Double.POSITIVE_INFINITY;
+        double lowerbound = Double.NEGATIVE_INFINITY;
+
+        return isValid(root,upperBound,lowerbound);
+
+    }
+    public boolean isValid(TreeNode root,double upperBound,double lowerBound){
         if(root==null){
             return true;
         }
-
-
-        if(((isLesser(root.left,root.val))) && (isGreater(root.right,root.val)) &&
-                (isValidBST(root.left)) && (isValidBST(root.right))){
-            return true;
-        }
-        else{
+        if(root.val<lowerBound || root.val>upperBound){
             return false;
         }
+        boolean left = isValid(root.left,root.val,lowerBound);
+        boolean right = isValid(root.right,upperBound,root.val);
+        return left && right;
 
     }
-    public boolean isGreater(TreeNode root,int val){
-        if(root==null){
-            return true;
-        }
-        if((root.val>val) && (isGreater(root.left,val))&& (isGreater(root.right,val))) {
-
-            return true;
 
 
-        }
-        else{
-            return false;
-        }
 
-    }
-    public boolean isLesser(TreeNode root,int val){
-        if(root==null){
-            return true;
-        }
-        if((root.val<val) && (isLesser(root.left,val))&& (isLesser(root.right,val))) {
-
-            return true;
-
-
-        }
-        else{
-            return false;
-        }
-
-    }
 
 }
 
 class TreeNode {
-    int val;
+    double val;
     TreeNode left;
     TreeNode right;
     TreeNode() {}
-    TreeNode(int val) { this.val = val; }
+    TreeNode(double val) { this.val = val; }
     TreeNode(int val, TreeNode left, TreeNode right) {
         this.val = val;
         this.left = left;
