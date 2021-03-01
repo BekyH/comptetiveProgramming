@@ -1,27 +1,19 @@
 import java.util.Arrays;
 
 public class twosum {
-    boolean isfound;
-    public int[]  twoSu(int[]arr, int target){
-
-        int[] results=new int[2];
-         isfound=false;
-        for(int i = 0;i<nums.length;i++){
-            for(int j = i+1;j<nums.length;j++){
-                if(nums[i]+nums[j]==target){
-                    results[0]=i;
-                    results[1]=j;
-                    isfound = true;
-                    return results;
+    public int[] twoSum(int[] nums, int target) {
+        int[] result = new int[2];
+        int n = nums.length;
+        for(int i = 0;i<n;i++){
+            for(int j=i+1;j<n;j++){
+                if((nums[i]+nums[j])==target){
+                    result[0]=i;
+                    result[1]=j;
+                    break;
                 }
-
             }
         }
-
-        return results;
-
+        return result;
     }
-
-
 
 }
