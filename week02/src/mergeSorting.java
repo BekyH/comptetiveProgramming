@@ -1,12 +1,19 @@
 public class mergeSorting {
-    public static void main(String [] args){
-        int[] arr = {1,6,3,4,8,9,0,0,2,3,2,1};
-        msort(arr,0,arr.length-1);
-        printArray(arr);
-
+    public int[] sortArray(int[] nums) {
+        msort(nums,0,nums.length-1);
+        return nums;
+    }
+    void msort(int[] arr,int beg,int end){
+        if(beg<end){
+            int mid = (beg+end-1)/2;
+            msort(arr,beg,mid);
+            msort(arr,mid+1,end);
+            mergeSort(arr,beg,mid,end);
+        }
 
     }
-    static void mergeSort(int[] arr,int beg,int mid,int end){
+
+    void mergeSort(int[] arr,int beg,int mid,int end){
 
         int left = mid-beg+1;
         int right = end-mid;
@@ -58,20 +65,4 @@ public class mergeSorting {
 
 
     }
-   static void msort(int[] arr,int beg,int end){
-        if(beg<end){
-            int mid = (beg+end-1)/2;
-            msort(arr,beg,mid);
-            msort(arr,mid+1,end);
-            mergeSort(arr,beg,mid,end);
-        }
-
-    }
-   static void printArray(int[] arr){
-        for(int x:arr){
-            System.out.print(x + " ");
-        }
-    }
-
-
 }
