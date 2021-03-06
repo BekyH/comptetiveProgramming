@@ -9,7 +9,7 @@ public class KthSmallestBT {
         return arraylist.get(k-1);
     }
 
-    public void helper(TreeNode root,ArrayList<Integer> arraylist){
+    public void KthSmallestBThelper(TreeNode root,ArrayList<Integer> arraylist){
         if(root==null){
             return;
         }
