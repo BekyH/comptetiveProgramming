@@ -51,7 +51,7 @@ public class shortestPath {
                 List<Integer> bluechildren = blue_adjList.get(node);
                 if(redchildren!=null){
                     for(int child:redchildren){
-                        if(!visited.contains(child + " " + "red") &&                                                                                           !parentpath.color.equals("red")){
+                        if(!visited.contains(child + " " + "red") &&!parentpath.color.equals("red")){
                             path redpath = new path(child,"red",dist +1);
 
                             deque.add(redpath);
@@ -62,7 +62,7 @@ public class shortestPath {
 
                 if(bluechildren!=null){
                     for(int child:bluechildren){
-                        if(!visited.contains(child + " " + "blue") &&                                                                                          !parentpath.color.equals("blue")){
+                        if(!visited.contains(child + " " + "blue") && !parentpath.color.equals("blue")){
                             path bluepath = new path(child,"blue",dist +1);
 
                             deque.add(bluepath);
