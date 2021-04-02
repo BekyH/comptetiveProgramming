@@ -1,32 +1,34 @@
 import java.util.HashMap;
 
-public class Trie {
-    Node root;
+class Trie {
+    TrieNode root;
     /** Initialize your data structure here. */
     public Trie() {
-        root = new Node();
+        root = new TrieNode('@');
+
     }
 
     /** Inserts a word into the trie. */
-    public void insert(String word){
-        Node current = root;
-        for(int i = 0;i<word.length();i++){
-            if(current!=null && !current.children.containsKey(word.charAt(i))){
-
-                Node node = new Node(word.charAt(i));
-                current.children.put(word.charAt(i),node);
+    public void insert(String word) {
+        TrieNode current = root;
+        for(int i=0;i<word.length();i++){
+            if(current.children.containsKey(word.charAt(i))){
+                current = current.children.get(word.charAt(i));
             }
-            current = current.children.get(word.charAt(i));
-
+            else{
+                TrieNode node = new TrieNode(word.charAt(i));
+                current.children.put(word.charAt(i),node);
+                current = node;
+            }
         }
         current.isEnd = true;
     }
 
     /** Returns if the word is in the trie. */
     public boolean search(String word) {
-        Node current = root;
-        for(int i = 0;i<word.length();i++){
-            if(current!=null && current.children.containsKey(word.charAt(i))){
+        TrieNode current = root;
+        for(int i=0;i<word.length();i++){
+            if(current.children.containsKey(word.charAt(i))){
                 current = current.children.get(word.charAt(i));
             }
             else{
@@ -38,9 +40,9 @@ public class Trie {
 
     /** Returns if there is any word in the trie that starts with the given prefix. */
     public boolean startsWith(String prefix) {
-        Node current = root;
-        for(int i = 0;i<prefix.length();i++){
-            if(current!=null && current.children.containsKey(prefix.charAt(i))){
+        TrieNode current = root;
+        for(int i=0;i<prefix.length();i++){
+            if(current.children.containsKey(prefix.charAt(i))){
                 current = current.children.get(prefix.charAt(i));
             }
             else{
@@ -50,20 +52,18 @@ public class Trie {
         return true;
     }
 }
-class Node{
-    char c;
+class TrieNode{
+    char data;
     boolean isEnd;
-    HashMap<Character,Node> children;
-    public Node(){
+    HashMap<Character, TrieNode> children;
+    public TrieNode(char data){
+        this.data = data;
         this.isEnd = false;
         this.children = new HashMap<>();
     }
-    public Node(char c){
-        this.c = c;
-        this.children = new HashMap<>();;
-        this.isEnd = false;
-    }
+
 }
+
 /**
  * Your Trie object will be instantiated and called as such:
  * Trie obj = new Trie();
