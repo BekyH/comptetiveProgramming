@@ -4,36 +4,34 @@ import java.util.List;
 public class pathSum {
 
     public boolean hasPathSum(TreeNode root, int targetSum) {
-        if(root==null){
-            return false;
+        boolean[] isPath = new boolean[1];
+        helper(root, 0, targetSum, isPath);
+        return isPath[0];
+    }
+
+    public boolean[] helper(TreeNode root, int sum, int targetSum, boolean[] isPath) {
+        if (root == null) {
+            return isPath;
         }
-        List<Integer> arr = new ArrayList<>();
-        hasPathSumhelper(root,targetSum,0,arr);
-        for(int x:arr){
-            if(targetSum==x){
-                return true;
+        if (isLeafNode(root)) {
+            sum = sum + root.val;
+
+            if (sum == targetSum) {
+                isPath[0] = true;
             }
         }
+
+        helper(root.left, sum + root.val, targetSum, isPath);
+        helper(root.right, sum + root.val, targetSum, isPath);
+        return isPath;
+
+    }
+
+    public boolean isLeafNode(TreeNode node) {
+
+        if (node != null && node.left == null && node.right == null) {
+            return true;
+        }
         return false;
-
     }
-
-    public void hasPathSumhelper(TreeNode root, int targetSum, int sum, List<Integer> result){
-        if(root.left==null && root.right==null){
-            sum = sum + root.val;
-            result.add(sum);
-
-        }
-        if(root.left!=null){
-            hasPathSumhelper(root.left,targetSum, sum + root.val,result);
-        }
-        if(root.right!=null){
-            hasPathSumhelper(root.right,targetSum, sum + root.val,result);
-        }
-
-
-
-    }
-
-
 }

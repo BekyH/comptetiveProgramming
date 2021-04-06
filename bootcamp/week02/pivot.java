@@ -1,5 +1,7 @@
-class pivot {
-    
+public class pivot {
+    public static void main(String[] args) {
+        System.out.print("me");
+    }
 
 public int pivotIndex(int[] nums) {
     int n = nums.length;

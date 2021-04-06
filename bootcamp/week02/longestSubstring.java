@@ -3,6 +3,9 @@ package com.company;
 import java.util.HashSet;
 
 public class longestSubstring {
+    public static void main(String[] args) {
+        System.out.println("me");
+    }
     public int lengthOfLongestSubstring(String s) {
         HashSet<Character> visited = new HashSet<>();
         int left = 0;
