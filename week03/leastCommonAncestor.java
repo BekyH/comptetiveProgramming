@@ -1,27 +1,30 @@
 public class leastCommonAncestor {
-    TreeNode lca;
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        int p_val = p.val;
-        int q_val = q.val;
-        int root_val = root.val;
-        if (root_val > p_val && root_val > q_val){
-            lowestCommonAncestor(root.left, p, q);
-        }
-        else if(root_val < p_val && root_val < q_val){
-            lowestCommonAncestor(root.right, p, q);
-        }
-        else{
-            lca = root;
-            return lca;
-        }
-        return lca;
+
+        return helper(root, p.val, q.val, new TreeNode[1]);
+
     }
 
+    public TreeNode helper(TreeNode root, int p_val, int q_val, TreeNode[] lca) {
+        if (p_val < root.val && q_val < root.val) {
+            helper(root.left, p_val, q_val, lca);
+        } else if (p_val > root.val && q_val > root.val) {
+            helper(root.right, p_val, q_val, lca);
+        } else {
+            lca[0] = root;
+
+        }
+        return lca[0];
+    }
 
 }
- class TreeNode {
-      int val;
-      TreeNode left;
-      TreeNode right;
-      TreeNode(int x) { val = x; }
-  }
+
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode(int x) {
+        val = x;
+    }
+}
