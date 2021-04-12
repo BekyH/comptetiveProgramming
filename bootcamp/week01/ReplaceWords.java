@@ -1,8 +1,9 @@
 public class ReplaceWords {
     public String replaceWords(List<String> dictionary, String sentence) {
+
         String[] sent = sentence.split(" ");
         StringBuilder result = new StringBuilder();
-
+        
         Trie trie = new Trie();
         for (String word : dictionary) {
             trie.insert(word);
