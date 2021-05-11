@@ -3,7 +3,7 @@ public class noOfRectangles {
     public int countGoodRectangles(int[][] rectangles) {
         List<Integer> list = new ArrayList<>();
         HashMap<Integer, Integer> hashmap = new HashMap<>();
-        int num_rect = Integer.MIN_VALUE;
+        int num_rect = 0;
 
         for (int[] rect : rectangles) {
             list.add(Math.min(rect[0], rect[1]));
