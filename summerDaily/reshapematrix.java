@@ -1,4 +1,4 @@
-public class reshape{
+public class reshapematrix{
     public int[][] matrixReshape(int[][] mat, int r, int c) {
         int m = mat.length;
         int n = mat[0].length;
