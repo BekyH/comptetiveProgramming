@@ -16,7 +16,7 @@ public class reducearraysize {
             }
         }
         for(Map.Entry<Integer,Integer> e:hashmap.entrySet()){
-            int key = e.getKey();
+            
             int val = e.getValue();
             
             max_heap.add(val);
