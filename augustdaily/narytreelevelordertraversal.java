@@ -1,5 +1,5 @@
 import java.util.*;
-public class narraytreelevelordertraversal{
+public class narytreelevelordertraversal{
     public List<List<Integer>> levelOrder(Node root) {
         List<List<Integer>> res = new ArrayList<>();
         Deque<Node> deque = new ArrayDeque<>();
