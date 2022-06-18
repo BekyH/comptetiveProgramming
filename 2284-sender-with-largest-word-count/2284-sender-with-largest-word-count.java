@@ -15,11 +15,15 @@ class Solution {
                 hashmap.put(sender,len);
             }
         }
+        int max = Collections.max(hashmap.values());
         for(Map.Entry<String,Integer> e: hashmap.entrySet()){
             String str = e.getKey();
             int freq = e.getValue();
-            Node node = new Node(freq, str);
-            heap.add(node);
+            if(freq==max){
+                  Node node = new Node(freq, str);
+                heap.add(node);
+            }
+          
         }
         
         return heap.peek().name;
