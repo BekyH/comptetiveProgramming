@@ -1,31 +1,28 @@
 class Solution {
     public int[] dailyTemperatures(int[] temperatures) {
-        Stack<Node> st = new Stack();
-        int n = temperatures.length;
-        int [] ans = new int[n];
+        Stack<day> st = new Stack<>();
+        int [] answer = new int[temperatures.length];
         for(int i=0;i<temperatures.length;i++){
-              Node node = new Node(temperatures[i],i);
-            if(st.isEmpty()){
-                st.add(node);
+            day d = new day(i,temperatures[i]);
+           
+            
+            while(!st.isEmpty() && d.temp>st.peek().temp){
+                answer[st.peek().index] = d.index-st.peek().index;
+                st.pop();
             }
-            else{
-                while(!st.isEmpty() && node.val>st.peek().val){
-                    Node nod = st.pop();
-                    ans[nod.index] = node.index-nod.index;
-                }
-                st.push(node);
-            }
+            st.push(d);
         }
         
-        return ans;
+        return answer;
     }
 }
 
-class Node{
-    int val;
+class day{
     int index;
-    Node(int val,int index){
-        this.val = val;
+    int temp;
+    day(int index,int temp){
         this.index = index;
+        this.temp = temp;
     }
+    
 }
