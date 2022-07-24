@@ -15,23 +15,23 @@
  */
 class Solution {
     public boolean isValidBST(TreeNode root) {
-        double lower =Double.NEGATIVE_INFINITY;
-        double upper =Double.POSITIVE_INFINITY;
-        return dfs(root,lower,upper);
+        
+        long lower = Long.MIN_VALUE;
+        long higher = Long.MAX_VALUE;
+        
+        return dfs(root,lower,higher);
         
     }
-    
-    public boolean dfs(TreeNode root,double lower,double upper){
+    public boolean dfs(TreeNode root,long lower,long higher){
         if(root==null){
             return true;
         }
-        if((double)root.val <=lower || (double)root.val>=upper){
-             return false;
+        if(root.val <= lower || root.val>=higher){
+            return false;
         }
         boolean left = dfs(root.left,lower,root.val);
-        boolean right = dfs(root.right,root.val,upper);
+        boolean right = dfs(root.right,root.val,higher);
         
         return left && right;
-        
     }
 }
