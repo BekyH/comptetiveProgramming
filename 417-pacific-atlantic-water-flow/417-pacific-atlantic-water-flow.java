@@ -1,43 +1,48 @@
 class Solution {
     public List<List<Integer>> pacificAtlantic(int[][] heights) {
-           List<List<Integer>> result = new ArrayList<>();
-           int m = heights.length;
-           int n = heights[0].length;
-           
-           int [][] directions = {{1,0},{-1,0},{0,1},{0,-1}};
-            for(int i=0;i<m;i++){
-                for(int j=0;j<n;j++){
-                    boolean[][] visited = new boolean[m][n];
-                    visited[i][j] = true;
-                    boolean [] pflag = new boolean[1];
-                    boolean [] aflag = new boolean[1];
-                    dfs(heights,directions,visited,i,j,pflag,aflag);
-                    if(pflag[0] && aflag[0]){
-                          result.add(Arrays.asList(i,j));
-                    }
-                }
+        List<List<Integer>> result = new ArrayList<>();
+        int [][] directions = {{1,0},{-1,0},{0,1},{0,-1}};
+        for(int i=0;i<heights.length;i++){
+            for(int j=0;j<heights[0].length;j++){
+                boolean [][] visited = new boolean[heights.length][heights[0].length];
+                boolean [] pacific = new boolean[1];
+                boolean [] atlantic = new boolean[1];
+                dfs(heights,directions,i,j,pacific,atlantic,visited);
+                if(pacific[0] && atlantic[0]){
+                    List<Integer> list = Arrays.asList(i,j);
+                    result.add(list);
             }
-           
-           return result;
-    }
-    
-    public void dfs(int [][] heights,int[][] directions,boolean [][] visited,int row,int col, boolean [] pflag,boolean[] aflag){
-            if(row==0 || col==0){
-                pflag[0] = true;
-            }
-           if(row==heights.length-1 || col==heights[0].length-1){
-               aflag[0] = true;
-           }
+        }
+        }
+        return result;
         
+    }
+    public void dfs(int[][] heights,int[][] directions,int row,int col,boolean [] pacific,boolean [] atlantic,boolean [][] visited){
+        
+        
+        visited[row][col] = true;
+        if(row==heights.length-1  || col==heights[0].length-1){
+            atlantic[0] = true;
+        }
+        if(row==0 || col==0){
+            pacific[0] = true;
+        }
         for(int [] direction:directions){
-            int new_row = row + direction[0];
-            int new_col = col + direction[1];
-            if(new_row>=0 && new_row<heights.length && new_col>=0 && new_col<heights[0].length && !visited[new_row][new_col] && heights[row][col]>=heights[new_row][new_col]){
+            int r = row + direction[0];
+            int c = col + direction[1];
+            if(r>=0 && r<heights.length && c>=0 && c<heights[0].length && !visited[r][c] && heights[row][col]>=heights[r][c]){
+                if(r==heights.length-1 || c == heights[0].length-1){
+                     atlantic[0] = true;
+                }
+                if(r==0 || c==0){
+                    pacific[0] = true;
+                }
+                if(pacific[0] && atlantic[0]){
+                    return;
+                }
+                dfs(heights,directions,r,c,pacific,atlantic,visited);
                 
-                visited[new_row][new_col] = true;
-                dfs(heights,directions,visited,new_row,new_col,pflag,aflag);
             }
         }
     }
 }
-
