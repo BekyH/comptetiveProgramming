@@ -1,64 +1,63 @@
 class Trie {
-  Node root;
+Node root;
     public Trie() {
-        root =new Node('@');
-        
+        root = new Node('@');
     }
     
     public void insert(String word) {
-        Node curr = root;
+        Node current = root;
         for(int i=0;i<word.length();i++){
-            if(curr.children.containsKey(word.charAt(i))){
-                curr = curr.children.get(word.charAt(i));
-                
+            if(current.children.containsKey(word.charAt(i))){
+                current = current.children.get(word.charAt(i));
             }
             else{
                 Node node = new Node(word.charAt(i));
-                curr.children.put(word.charAt(i),node);
-                curr = node;
+                current.children.put(word.charAt(i),node);
+                current = node;
             }
         }
-        curr.is_End = true;
+        current.is_end = true;
     }
     
     public boolean search(String word) {
-        Node curr = root;
+        Node current = root;
         for(int i=0;i<word.length();i++){
-            if(curr.children.containsKey(word.charAt(i))){
-                curr = curr.children.get(word.charAt(i));
+            if(current.children.containsKey(word.charAt(i))){
+                current = current.children.get(word.charAt(i));
+                
             }
             else{
-                return false;
+              return false;
             }
         }
         
-        return curr.is_End;
+        return current.is_end;
     }
     
     public boolean startsWith(String prefix) {
-        Node curr = root;
+        Node current = root;
         for(int i=0;i<prefix.length();i++){
-            if(curr.children.containsKey(prefix.charAt(i))){
-                curr = curr.children.get(prefix.charAt(i));
+            if(current.children.containsKey(prefix.charAt(i))){
+                current = current.children.get(prefix.charAt(i));
+                
             }
             else{
-                return false;
+              return false;
             }
         }
         
         return true;
     }
 }
-
 class Node{
-     char c;
-     HashMap<Character,Node> children;
-     boolean is_End;
-     Node(char c){
-        c = this.c;
-        children = new HashMap<>();
-        is_End = false;
-     }
+    char c;
+    HashMap<Character,Node> children;
+    boolean is_end;
+    Node(char c){
+        this.c = c;
+        this.children = new HashMap<>();
+       this. is_end = false;
+    }
 }
 
 /**
