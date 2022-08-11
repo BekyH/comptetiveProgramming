@@ -16,21 +16,17 @@
 class Solution {
     public boolean isValidBST(TreeNode root) {
         
-        long lower = Long.MIN_VALUE;
-        long higher = Long.MAX_VALUE;
-        
-        return dfs(root,lower,higher);
-        
+        return dfs(root,Long.MIN_VALUE,Long.MAX_VALUE);
     }
-    public boolean dfs(TreeNode root,long lower,long higher){
+    public boolean dfs(TreeNode root,long low,long high){
         if(root==null){
             return true;
         }
-        if(root.val <= lower || root.val>=higher){
+        if(root.val<=low || root.val>=high){
             return false;
         }
-        boolean left = dfs(root.left,lower,root.val);
-        boolean right = dfs(root.right,root.val,higher);
+        boolean left = dfs(root.left,low,root.val);
+        boolean right = dfs(root.right,root.val,high);
         
         return left && right;
     }
