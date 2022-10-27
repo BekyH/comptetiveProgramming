@@ -1,25 +1,29 @@
 class Solution {
     public boolean checkSubarraySum(int[] nums, int k) {
-        int n = nums.length;
-        int prefixSum = 0;
-        HashMap<Integer,Integer> hashmap = new HashMap<>();
-        
-        for(int i=0;i<n;i++){
-            prefixSum = prefixSum + nums[i];
-            int mod =prefixSum%k ;
-            if(mod==0 && i>=1){
-                return true;
-            }
-            if(hashmap.containsKey(mod) && i-hashmap.get(mod)>1){
-                
-                return true;
-            }
-            if(!hashmap.containsKey(mod)){
-                hashmap.put(mod,i);
-            } 
+        int [] prefixSum = new int[nums.length];
+        HashMap<Integer,Integer> map = new HashMap<>();
+        map.put(0,-1);
+        prefixSum[0] = nums[0];
+        for(int i=1;i<nums.length;i++){
+            prefixSum[i] = nums[i] + prefixSum[i-1];
             
+        }
+        for(int i=0;i<prefixSum.length;i++){
+             prefixSum[i] = prefixSum[i]%k;
+             if(map.containsKey(prefixSum[i])){
+                  int diff = i - map.get(prefixSum[i]);
+                 if(diff>1){
+                     return true;
+                 }
+                
+             }
+            else{
+               map.put(prefixSum[i],i); 
+            }
+           //  
         }
         
         return false;
+        
     }
 }
