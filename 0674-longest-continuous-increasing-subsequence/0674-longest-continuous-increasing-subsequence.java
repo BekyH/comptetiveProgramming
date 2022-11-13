@@ -1,26 +1,18 @@
 class Solution {
     public int findLengthOfLCIS(int[] nums) {
-        Stack<Integer> stack = new Stack<>();
-        int max = Integer.MIN_VALUE;
-        for(int num:nums){
-            if(stack.isEmpty()){
-                stack.push(num);
+        int counter = 0;
+        int max = 0;
+        for(int i=1;i<nums.length;i++){
+            if(nums[i-1]<nums[i]){
+                counter++;
             }
             else{
-                if(num>stack.peek()){
-                    stack.push(num);
-                    
-                }
-                else{
-                    max = Math.max(max,stack.size());
-                    stack.clear();
-                    stack.push(num);
-                }
+                max = Math.max(counter,max);
+                counter=0;
             }
         }
-                    max = Math.max(max,stack.size());
+                max = Math.max(counter,max);
         
-        
-        return max;
+        return max+1;
     }
 }
