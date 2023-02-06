@@ -23,10 +23,7 @@ class Solution {
                 deque.add(new int[]{sp,pos,len+1});
              
             }
-            else{
-                continue;
-            }
-            
+          
             
         }
         
